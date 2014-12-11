@@ -5,6 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
 
@@ -25,7 +27,20 @@ public class LegendaListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+        if(entries == null){
+            clear();
+        }
         return entries.size();
+    }
+
+    @AfterInject
+    void initI(){
+        clear();
+    }
+
+    @AfterViews
+    void init(){
+        clear();
     }
 
 

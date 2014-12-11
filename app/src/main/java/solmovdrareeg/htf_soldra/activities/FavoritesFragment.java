@@ -6,11 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.androidannotations.annotations.EFragment;
+
 import solmovdrareeg.htf_soldra.R;
 
 /**
  * Created by Dries on 11/12/2014.
  */
+@EFragment
 public class FavoritesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {

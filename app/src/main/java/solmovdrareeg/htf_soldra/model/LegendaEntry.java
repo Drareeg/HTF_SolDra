@@ -7,7 +7,12 @@ public class LegendaEntry {
     private int image;
     private String description;
 
-    public LegendaEntry(){};
+    public LegendaEntry(){}
+
+    public LegendaEntry(int image, String description){
+        setImage(image);
+        setDescription(description);
+    };
 
     public int getImage() {
         return image;
