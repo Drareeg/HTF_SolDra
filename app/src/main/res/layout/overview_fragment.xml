@@ -15,7 +15,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:id="@+id/cityTextView" />
+                android:id="@+id/cityTextView"
+                android:hint="Postcode of gemeente"/>
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -25,9 +26,15 @@
 
         </LinearLayout>
             <ListView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/listView" />
+            <TextView
+                android:id="@+id/noItemFoundTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Geen gemeentes gevonden"
+                android:visibility="gone"/>
             </LinearLayout>
 
 

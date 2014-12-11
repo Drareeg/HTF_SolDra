@@ -21,21 +21,20 @@
             android:textSize="20dp"/>
         <ImageView
             android:id="@+id/cityDetail_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
             android:src="@drawable/orange"
-            android:adjustViewBounds="true"
-            android:maxWidth="42dp"
-            android:maxHeight="42dp"
-            android:scaleType="fitCenter" />
+             />
         <TextView
             android:id="@+id/cityDetail_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="testStatus"
-            android:layout_marginTop="10dp"
+            android:textSize="15dp"
+            android:layout_marginTop="20dp"
             />
         <Button
             android:layout_width="wrap_content"
@@ -44,7 +43,7 @@
             android:text="favorite"
             android:id="@+id/favoriteButton"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="20dp" />
     </LinearLayout>
 
 
