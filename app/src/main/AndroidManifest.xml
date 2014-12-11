@@ -21,6 +21,7 @@
         </activity>
         <activity
             android:name="solmovdrareeg.htf_soldra.activities.CityDetailActivity_"
+            android:parentActivityName="solmovdrareeg.htf_soldra.activities.MainActivity_"
             android:label="@string/title_activity_city_detail" >
         </activity>
     </application>
