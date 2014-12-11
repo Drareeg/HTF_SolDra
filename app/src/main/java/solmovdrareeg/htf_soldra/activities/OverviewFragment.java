@@ -54,6 +54,7 @@ public class OverviewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         showDefaultCities();
+
         return inflater.inflate(R.layout.overview_fragment, container, false);
 
     }
@@ -115,4 +116,9 @@ public class OverviewFragment extends Fragment {
         startActivity(intent);
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }

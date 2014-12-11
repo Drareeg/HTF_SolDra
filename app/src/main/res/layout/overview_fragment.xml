@@ -1,42 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    >
-        <!-- search bar -->
-        <LinearLayout
+    android:orientation="vertical"
+    android:padding="10dp">
+    <!-- search bar -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--cheatje om de focus niet op de searchtext te hebben-->
+        <LinearLayout android:focusable="true" android:focusableInTouchMode="true" android:layout_width="0px" android:layout_height="0px"/>
+        <EditText
+            android:id="@+id/cityTextView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:id="@+id/cityTextView"
-                android:hint="Postcode of gemeente"/>
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:drawableLeft="@drawable/ic_action_search"
-                android:id="@+id/searchButton" />
+            android:layout_weight="1"
+            android:hint="Postcode of gemeente" />
 
-        </LinearLayout>
-            <ListView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/listView" />
-            <TextView
-                android:id="@+id/noItemFoundTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Geen gemeentes gevonden"
-                android:visibility="gone"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"/>
-            </LinearLayout>
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:drawableLeft="@drawable/ic_action_search" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/noItemFoundTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Geen gemeentes gevonden"
+        android:textSize="15dp"
+        android:visibility="gone" />
+
+</LinearLayout>
 
 
