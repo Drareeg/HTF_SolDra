@@ -2,16 +2,9 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
     >
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
         <!-- search bar -->
         <LinearLayout
             android:layout_width="fill_parent"
@@ -24,28 +17,17 @@
                 android:layout_weight="1"
                 android:id="@+id/cityTextView" />
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Search"
+                android:layout_weight="4"
+                android:drawableLeft="@drawable/ic_action_search"
                 android:id="@+id/searchButton" />
-            Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+
         </LinearLayout>
-
-
-
-        <!-- tips panel -->
-
-
             <ListView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/listView" />
-        </LinearLayout>
-    </ScrollView>
             </LinearLayout>
 
 

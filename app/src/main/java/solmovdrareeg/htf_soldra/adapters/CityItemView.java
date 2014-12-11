@@ -28,7 +28,7 @@ public class CityItemView extends LinearLayout{
     }
 
     public void bind(City city){
-       nameText.setText("naam" + city.getName());
+       nameText.setText(city.getName());
 
     }
 }
