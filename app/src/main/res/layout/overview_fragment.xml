@@ -35,39 +35,10 @@
                 android:layout_weight="1"/>
         </LinearLayout>
 
-        <!-- status panel -->
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/orange"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="testStatus"
-                />
-        </LinearLayout>
 
         <!-- tips panel -->
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="What to do"
-                    android:gravity="center_horizontal"/>
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Tips and tricks"/>
-                </LinearLayout>
+
 
             <ListView
                 android:layout_width="wrap_content"

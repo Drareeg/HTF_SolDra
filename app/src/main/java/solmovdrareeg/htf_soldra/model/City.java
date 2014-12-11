@@ -1,9 +1,11 @@
 package solmovdrareeg.htf_soldra.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Drareeg on 11.12.14.
  */
-public class City {
+public class City implements Serializable {
 
     private long id;
     private String name;

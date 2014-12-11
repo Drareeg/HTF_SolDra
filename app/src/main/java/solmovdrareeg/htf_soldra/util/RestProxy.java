@@ -62,7 +62,6 @@ public class RestProxy {
 
     public CityList getByName(String gemeente){
         ArrayList<City> foundCities = new ArrayList();
-
         CityList allCities = getAllCities();
         for(City city : allCities.getItems()){
             if(city.getName().contains(gemeente)){

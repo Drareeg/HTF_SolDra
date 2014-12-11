@@ -4,5 +4,6 @@
     <string name="app_name">HTF_SolDra</string>
     <string name="hello_world">Hello world van Dries en Geerard!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_city_detail">CityDetailActivity</string>
 
 </resources>

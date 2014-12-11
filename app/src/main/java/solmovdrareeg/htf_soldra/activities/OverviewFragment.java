@@ -1,5 +1,6 @@
 package solmovdrareeg.htf_soldra.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
@@ -40,7 +42,7 @@ public class OverviewFragment extends Fragment {
     TextView cityTextView;
 
     @AfterViews
-    void bindAdapter(){
+    void bindAdapter() {
         listView.setAdapter(adapter);
     }
 
@@ -48,27 +50,34 @@ public class OverviewFragment extends Fragment {
     CityListAdapter adapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.overview_fragment, container, false);
     }
 
     @Background
     @Click(R.id.searchButton)
-    public void searchCity(){
+    public void searchCity() {
         //todo
         //adapter.clear();
         CityList byName = proxy.getByName(cityTextView.getText().toString());
-        for(City city : byName.getItems()) {
+        for (City city : byName.getItems()) {
             adapter.add(city);
         }
         System.out.println("done searching" + adapter.getCount());
         notifyChanged();
 
     }
-@UiThread
+
+    @UiThread
     public void notifyChanged() {
         adapter.notifyDataSetChanged();
     }
 
+    @ItemClick
+    void listViewItemClicked(City clickedCity) {
+        Intent intent = new Intent(getActivity().getApplicationContext(), CityDetailActivity_.class);
+        intent.putExtra("city", clickedCity);
+        startActivity(intent);
+    }
 
 }

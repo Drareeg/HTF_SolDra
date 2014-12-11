@@ -14,7 +14,8 @@ import solmovdrareeg.htf_soldra.model.CityList;
 public interface MyPrefs {
 
     @DefaultStringSet
-    Set<String> favoritedCityNames();
+    Set<String> favoritedCityIds();
+
 
     long lastUpdated();
 }
