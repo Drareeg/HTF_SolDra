@@ -19,7 +19,7 @@
         android:id="@+id/noItemFoundTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Geen gemeentes gevonden"
+        android:text="Je hebt nog geen favoriete gemeenten"
         android:visibility="gone"
         android:layout_marginTop="10dp"
         android:textSize="15dp"/>
