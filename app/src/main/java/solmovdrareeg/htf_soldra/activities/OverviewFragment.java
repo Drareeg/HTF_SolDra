@@ -17,7 +17,6 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.rest.RestService;
 
 import solmovdrareeg.htf_soldra.R;
 import solmovdrareeg.htf_soldra.adapters.CityListAdapter;
@@ -75,7 +74,7 @@ public class OverviewFragment extends Fragment {
     @Background
     @Click(R.id.searchButton)
     public void searchCity() {
-        showListView();
+        showThingsForNewSearch();
         adapter.clear();
         notifyChanged();
         CityList byName = proxy.getByName(cityTextView.getText().toString());
@@ -89,8 +88,9 @@ public class OverviewFragment extends Fragment {
     }
 
     @UiThread
-    public void showListView() {
+    public void showThingsForNewSearch() {
         listView.setVisibility(View.VISIBLE);
+        noItemFoundTextView.setVisibility(View.GONE);
     }
 
     @UiThread
