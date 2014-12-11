@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import solmovdrareeg.htf_soldra.activities.FavoritesFragment;
 import solmovdrareeg.htf_soldra.activities.FavoritesFragment_;
-import solmovdrareeg.htf_soldra.activities.OverviewFragment;
 import solmovdrareeg.htf_soldra.activities.OverviewFragment_;
 import solmovdrareeg.htf_soldra.activities.TipFragment;
 import solmovdrareeg.htf_soldra.activities.TipFragment_;
