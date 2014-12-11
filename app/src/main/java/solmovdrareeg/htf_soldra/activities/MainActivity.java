@@ -4,19 +4,34 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.rest.RestService;
 
 import solmovdrareeg.htf_soldra.R;
+import solmovdrareeg.htf_soldra.model.City;
+import solmovdrareeg.htf_soldra.util.RestClient;
 
 
 @EActivity
 public class MainActivity extends Activity {
 
+    @ViewById(R.id.textView)
+    public TextView textView;
+
+    @RestService
+    RestClient restClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        for (City city : restClient.getAllCities()) {
+            System.out.println(city.getName());
+        }
+        ;
     }
 
 
