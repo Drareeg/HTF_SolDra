@@ -64,7 +64,7 @@ public class RestProxy {
         ArrayList<City> foundCities = new ArrayList();
         CityList allCities = getAllCities();
         for(City city : allCities.getItems()){
-            if(city.getName().contains(gemeente)){
+            if(city.getName().toLowerCase().contains(gemeente.toLowerCase())){
                 foundCities.add(city);
             }
         }

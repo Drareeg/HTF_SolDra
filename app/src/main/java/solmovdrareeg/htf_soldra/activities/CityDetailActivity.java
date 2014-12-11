@@ -97,6 +97,7 @@ public class CityDetailActivity extends Activity {
 
         }else{
             originalSet.add(city.getId()+"");
+            System.out.println("added to prefs");
         }
         prefs.edit().favoritedCityIds().put(originalSet).apply();
     }
