@@ -16,13 +16,19 @@
         <TextView  android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/gemeenteTextView"
-            android:text="testStad"/>
+            android:text="testStad"
+            android:textStyle="bold"
+            android:textSize="20dp"/>
         <ImageView
             android:id="@+id/cityDetail_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/orange"/>
+            android:src="@drawable/orange"
+            android:adjustViewBounds="true"
+            android:maxWidth="42dp"
+            android:maxHeight="42dp"
+            android:scaleType="fitCenter" />
         <TextView
             android:id="@+id/cityDetail_status"
             android:layout_width="wrap_content"
@@ -37,7 +43,7 @@
             android:drawableLeft="@drawable/ic_action_star"
             android:text="favorite"
             android:id="@+id/favoriteButton"
-            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp" />
     </LinearLayout>
 
