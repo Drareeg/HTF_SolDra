@@ -38,11 +38,6 @@ public class LegendaListAdapter extends BaseAdapter {
         clear();
     }
 
-    @AfterViews
-    void init(){
-        clear();
-    }
-
 
     public void add(LegendaEntry entry){
         entries.add(entry);
