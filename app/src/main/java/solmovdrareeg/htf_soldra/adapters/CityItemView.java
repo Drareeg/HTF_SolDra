@@ -8,6 +8,9 @@ import android.widget.TextView;
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import solmovdrareeg.htf_soldra.R;
 import solmovdrareeg.htf_soldra.model.City;
 
@@ -18,9 +21,20 @@ import solmovdrareeg.htf_soldra.model.City;
 @EViewGroup(R.layout.city_overview_list_row)
 public class CityItemView extends LinearLayout{
 
+    @ViewById
+    ImageView statusView;
 
     @ViewById
     TextView nameText;
+
+    private static Map<String, Integer> imageMap;
+    static{
+        imageMap = new HashMap<String, Integer>();
+        imageMap.put("GREEN", R.drawable.green);
+        imageMap.put("RED", R.drawable.red);
+        imageMap.put("ORANGE", R.drawable.orange);
+        imageMap.put("BLACK", R.drawable.black);
+    }
 
 
     public CityItemView(Context context) {
@@ -28,7 +42,8 @@ public class CityItemView extends LinearLayout{
     }
 
     public void bind(City city){
-       nameText.setText("naam" + city.getName());
+       nameText.setText(city.getName());
+        statusView.setImageResource(imageMap.get(city.getAlertCode()));
 
     }
 }
