@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterExtras;
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
@@ -65,19 +66,24 @@ public class CityDetailActivity extends Activity {
 
     @AfterViews
     public void doAfterViews(){
-        HashSet<String> empty = new HashSet<String>();
-        SharedPreferences prefs = getSharedPreferences(String.valueOf(R.string.preferences), MODE_PRIVATE);
-        Set<String> prefids = prefs.getStringSet("prefids", empty);
-
         cityDetail_img.setImageResource(CityItemView.imageMap.get(city.getAlertCode()));
         cityDetail_status.setText(statusMap.get(city.getAlertCode()));
 
         gemeenteTextView.setText(city.getName());
+        updateButtonText();
+    }
+
+    @Background
+    public void updateButtonText() {
+        HashSet<String> empty = new HashSet<String>();
+        SharedPreferences prefs = getSharedPreferences(String.valueOf(R.string.preferences), MODE_PRIVATE);
+        Set<String> prefids = prefs.getStringSet("prefids", empty);
         if(!prefids.contains(city.getId())){
             favoriteButton.setText("Add to favorites");
         }else{
             favoriteButton.setText(unfav);
         }
+
     }
 
     @Override
@@ -85,6 +91,12 @@ public class CityDetailActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_city_detail, menu);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateButtonText();
     }
 
     @Override
@@ -107,20 +119,17 @@ public class CityDetailActivity extends Activity {
         HashSet<String> empty = new HashSet<String>();
         SharedPreferences prefs = getSharedPreferences(String.valueOf(R.string.preferences), MODE_PRIVATE);
         Set<String> prefids = prefs.getStringSet("prefids", empty);
-
-
         if(favoriteButton.getText().toString().equals(unfav)){
             //remove from pref
-
             prefids.remove(city.getId()+"");
 
         }else{
             prefids.add(city.getId()+"");
-            System.out.println("added to prefs");
         }
         SharedPreferences.Editor editor = getSharedPreferences(String.valueOf(R.string.preferences), MODE_PRIVATE).edit();
         editor.putStringSet("prefids", prefids);
         editor.commit();
+        updateButtonText();
     }
 
     public static Map<String, String> statusMap;
