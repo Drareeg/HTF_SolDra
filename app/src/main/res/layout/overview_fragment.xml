@@ -21,11 +21,14 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"/>
+                android:layout_weight="3"
+                android:id="@+id/cityTextView" />
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:text="Search"
+                android:id="@+id/searchButton" />
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,7 +48,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="testStatus"/>
+                android:text="testStatus"
+                />
         </LinearLayout>
 
         <!-- tips panel -->

@@ -25,4 +25,5 @@ public interface RestClient {
     @Get("/city?province={province}")
     CityList getByProvince(String province);
 
+
 }

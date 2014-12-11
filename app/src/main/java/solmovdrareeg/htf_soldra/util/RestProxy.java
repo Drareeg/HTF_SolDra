@@ -4,7 +4,11 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import org.androidannotations.annotations.EBean;
+import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.rest.RestService;
+
+import java.util.ArrayList;
 
 import solmovdrareeg.htf_soldra.model.City;
 import solmovdrareeg.htf_soldra.model.CityList;
@@ -12,6 +16,7 @@ import solmovdrareeg.htf_soldra.model.CityList;
 /**
  * Created by Drareeg on 11.12.14.
  */
+@EBean
 public class RestProxy {
 
     Context context;
@@ -20,6 +25,7 @@ public class RestProxy {
         this.context = context;
     }
 
+    @RestService
     RestClient restClient;
 
     public void injectClient(RestClient client){
@@ -27,7 +33,7 @@ public class RestProxy {
 
     }
 
-    CityList getAllCities(){
+    public CityList getAllCities(){
         if(haveNetworkConnection()){
             return restClient.getAllCities();
         }else{
@@ -36,7 +42,7 @@ public class RestProxy {
         }
     }
 
-    City getById(long id){
+    public City getById(long id){
         if(haveNetworkConnection()){
             return restClient.getById(id);
         }else{
@@ -46,12 +52,26 @@ public class RestProxy {
 
     }
 
-    CityList getByProvince(String province){
+    public CityList getByProvince(String province){
         if(haveNetworkConnection()){
             return restClient.getByProvince(province);
         }else{
             return null;
         }
+    }
+
+    public CityList getByName(String gemeente){
+        ArrayList<City> foundCities = new ArrayList();
+
+        CityList allCities = getAllCities();
+        for(City city : allCities.getItems()){
+            if(city.getName().contains(gemeente)){
+                foundCities.add(city);
+            }
+        }
+        CityList filteredCities = new CityList();
+        filteredCities.setItems(foundCities.toArray(new City[foundCities.size()]));
+        return filteredCities;
     }
 
 
