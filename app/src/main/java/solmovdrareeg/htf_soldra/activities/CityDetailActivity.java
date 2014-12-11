@@ -15,6 +15,7 @@ import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.androidannotations.api.sharedpreferences.StringSetPrefField;
@@ -78,11 +79,17 @@ public class CityDetailActivity extends Activity {
         HashSet<String> empty = new HashSet<String>();
         SharedPreferences prefs = getSharedPreferences(String.valueOf(R.string.preferences), MODE_PRIVATE);
         Set<String> prefids = prefs.getStringSet("prefids", empty);
-        if(!prefids.contains(city.getId())){
-            favoriteButton.setText("Add to favorites");
+        if(!prefids.contains(city.getId()+"")){
+            setButtonText("Add to favorites");
         }else{
-            favoriteButton.setText(unfav);
+            setButtonText(unfav);
         }
+
+    }
+
+    @UiThread
+    public void setButtonText(String text){
+        favoriteButton.setText(text);
 
     }
 

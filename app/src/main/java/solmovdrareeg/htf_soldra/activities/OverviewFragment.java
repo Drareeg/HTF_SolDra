@@ -70,8 +70,8 @@ public class OverviewFragment extends Fragment {
     @Background
     @Click(R.id.searchButton)
     public void searchCity() {
-        //todo
-        //adapter.clear();
+        adapter.clear();
+        notifyChanged();
         CityList byName = proxy.getByName(cityTextView.getText().toString());
         for (City city : byName.getItems()) {
             adapter.add(city);

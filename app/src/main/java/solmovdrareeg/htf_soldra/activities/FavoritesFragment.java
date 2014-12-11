@@ -46,7 +46,7 @@ public class FavoritesFragment extends Fragment {
     void bindAdapter() {
 
         listView.setAdapter(adapter);
-        //adapter.clear();
+        adapter.clear();
         fillFromPrefs();
 
 
@@ -54,6 +54,8 @@ public class FavoritesFragment extends Fragment {
 
     @Background
     public void fillFromPrefs() {
+        adapter.clear();
+        notifyChanged();
         HashSet<String> empty = new HashSet<String>();
         SharedPreferences prefs = getActivity().getSharedPreferences(String.valueOf(R.string.preferences), Activity.MODE_PRIVATE);
         Set<String> prefids = prefs.getStringSet("prefids", empty);
