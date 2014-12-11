@@ -36,7 +36,9 @@ public class CityListAdapter extends BaseAdapter {
     }
 
     public void add(City city) {
-        cities.add(city);
+        if(!cities.contains(city)){
+            cities.add(city);
+        }
     }
 
     @Override

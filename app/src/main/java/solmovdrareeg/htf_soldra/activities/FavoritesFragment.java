@@ -57,6 +57,7 @@ public class FavoritesFragment extends Fragment {
 
     @Background
     public void fillFromPrefs() {
+        System.out.println("FILLFROMPREFS");
         showThingsForNewSearch();
         adapter.clear();
         notifyChanged();
@@ -77,6 +78,7 @@ public class FavoritesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        System.out.println("FILLFROMCREATE");
         fillFromPrefs();
         return inflater.inflate(R.layout.favorites_fragment, container, false);
     }
@@ -84,6 +86,7 @@ public class FavoritesFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        System.out.println("FILLFROMRESUME");
         fillFromPrefs();
     }
 
