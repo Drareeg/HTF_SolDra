@@ -11,6 +11,7 @@ public class City {
     private String province;
     private String alertCode;
     private String kind;
+    public String etag;
 
     public long getId() {
         return id;
@@ -54,6 +55,14 @@ public class City {
 
     public String getKind() {
         return kind;
+    }
+
+    public String getEtag() {
+        return etag;
+    }
+
+    public void setEtag(String etag) {
+        this.etag = etag;
     }
 
     public void setKind(String kind) {
