@@ -46,6 +46,9 @@ public class OverviewFragment extends Fragment {
         listView.setAdapter(adapter);
     }
 
+    @ViewById
+    TextView noItemFoundTextView;
+
     @Bean
     CityListAdapter adapter;
 
@@ -59,10 +62,12 @@ public class OverviewFragment extends Fragment {
 
     @Background
     public void showDefaultCities() {
-        long[] defaultIds = new long[]{5297547954356224l, 4790047639339008l, 5508312736989184l,4541270517088256l, 5624528914874368l };
-        for(long id : defaultIds){
-            adapter.add(proxy.getById(id));
-            notifyChanged();
+        if (adapter.getCount() == 0) {
+            long[] defaultIds = new long[]{5297547954356224l, 4790047639339008l, 5508312736989184l, 4541270517088256l, 5624528914874368l};
+            for (long id : defaultIds) {
+                adapter.add(proxy.getById(id));
+                notifyChanged();
+            }
         }
     }
 
@@ -70,6 +75,7 @@ public class OverviewFragment extends Fragment {
     @Background
     @Click(R.id.searchButton)
     public void searchCity() {
+        showListView();
         adapter.clear();
         notifyChanged();
         CityList byName = proxy.getByName(cityTextView.getText().toString());
@@ -78,6 +84,24 @@ public class OverviewFragment extends Fragment {
         }
         notifyChanged();
 
+        updateNoItemFoundTextView();
+
+    }
+
+    @UiThread
+    public void showListView() {
+        listView.setVisibility(View.VISIBLE);
+    }
+
+    @UiThread
+    public void updateNoItemFoundTextView() {
+        if (adapter.getCount() == 0) {
+            listView.setVisibility(View.GONE);
+            noItemFoundTextView.setVisibility(View.VISIBLE);
+        }else{
+            noItemFoundTextView.setVisibility(View.GONE);
+
+        }
     }
 
     @UiThread

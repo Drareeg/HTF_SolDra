@@ -42,7 +42,7 @@ public class FavoritesFragment extends Fragment {
     RestProxy proxy;
 
     @AfterViews
-   @Background
+    @Background
     void bindAdapter() {
 
         listView.setAdapter(adapter);
