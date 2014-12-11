@@ -100,7 +100,6 @@ public class OverviewFragment extends Fragment {
             noItemFoundTextView.setVisibility(View.VISIBLE);
         }else{
             noItemFoundTextView.setVisibility(View.GONE);
-
         }
     }
 

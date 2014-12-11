@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -34,6 +35,8 @@ import solmovdrareeg.htf_soldra.util.RestProxy;
 @EFragment
 public class FavoritesFragment extends Fragment {
 
+    @ViewById
+    TextView noItemFoundTextView;
 
     @ViewById
     ListView listView;
@@ -47,13 +50,14 @@ public class FavoritesFragment extends Fragment {
 
         listView.setAdapter(adapter);
         adapter.clear();
-        fillFromPrefs();
+//        fillFromPrefs();
 
 
     }
 
     @Background
     public void fillFromPrefs() {
+        showThingsForNewSearch();
         adapter.clear();
         notifyChanged();
         HashSet<String> empty = new HashSet<String>();
@@ -63,6 +67,7 @@ public class FavoritesFragment extends Fragment {
             adapter.add(proxy.getById(Long.parseLong(id)));
             notifyChanged();
         }
+        updateNoItemFoundTextView();
     }
 
 
@@ -72,6 +77,7 @@ public class FavoritesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        fillFromPrefs();
         return inflater.inflate(R.layout.favorites_fragment, container, false);
     }
 
@@ -91,5 +97,22 @@ public class FavoritesFragment extends Fragment {
         Intent intent = new Intent(getActivity().getApplicationContext(), CityDetailActivity_.class);
         intent.putExtra("city", clickedCity);
         startActivity(intent);
+    }
+
+
+    @UiThread
+    public void showThingsForNewSearch() {
+        listView.setVisibility(View.VISIBLE);
+        noItemFoundTextView.setVisibility(View.GONE);
+    }
+
+    @UiThread
+    public void updateNoItemFoundTextView() {
+        if (adapter.getCount() == 0) {
+            listView.setVisibility(View.GONE);
+            noItemFoundTextView.setVisibility(View.VISIBLE);
+        }else{
+            noItemFoundTextView.setVisibility(View.GONE);
+        }
     }
 }
