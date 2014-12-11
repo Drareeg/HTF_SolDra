@@ -20,8 +20,12 @@ public class RestProxy {
         this.context = context;
     }
 
-    @RestService
     RestClient restClient;
+
+    public void injectClient(RestClient client){
+        this.restClient = client;
+
+    }
 
     CityList getAllCities(){
         if(haveNetworkConnection()){

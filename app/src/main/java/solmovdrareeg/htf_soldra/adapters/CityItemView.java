@@ -8,8 +8,6 @@ import android.widget.TextView;
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
 
-import domain.ContactablePerson;
-import drie.joetzandroid.R;
 
 /**
  * Created by Drareeg on 05.12.14.
