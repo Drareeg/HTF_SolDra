@@ -4,15 +4,16 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tips voor minder stroomverbruik"
+                android:text="Uitleg statussen"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
             <ListView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tip_list"
+                android:id="@+id/legenda_list"
                 android:layout_marginTop="5dp"></ListView>
 </LinearLayout>

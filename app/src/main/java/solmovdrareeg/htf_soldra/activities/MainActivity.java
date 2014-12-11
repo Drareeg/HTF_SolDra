@@ -68,6 +68,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                         .setTabListener(this));
         actionBar.addTab(
                 actionBar.newTab()
+                        .setText("Informatie")
+                        .setTabListener(this));
+        actionBar.addTab(
+                actionBar.newTab()
                         .setText("Tips")
                         .setTabListener(this));
 

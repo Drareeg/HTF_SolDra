@@ -1,0 +1,79 @@
+package solmovdrareeg.htf_soldra.adapters;
+
+/**
+ * Created by Dries on 11/12/2014.
+ */
+
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+
+import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.EBean;
+import org.androidannotations.annotations.RootContext;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+import solmovdrareeg.htf_soldra.model.Tip;
+
+/**
+ * Created by Dries on 11/12/2014.
+ */
+@EBean
+public class TipListAdapter extends BaseAdapter {
+
+    List<Tip> entries;
+    @RootContext
+    Context context;
+
+    @Override
+    public int getCount() {
+        if(entries == null){
+            clear();
+        }
+        return entries.size();
+    }
+
+    @AfterInject
+    void initI(){
+        clear();
+    }
+
+
+    public void add(Tip entry){
+        entries.add(entry);
+    }
+
+    @Override
+    public Tip getItem(int position) {
+        return entries.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        TipView tipView = null;
+        if (convertView == null) {
+            tipView = TipView_.build(context);
+        } else {
+            tipView = (TipView) convertView;
+        }
+
+        tipView.bind(getItem(position));
+
+        return tipView;
+    }
+
+    public void clear() {
+        entries = new ArrayList<Tip>();
+    }
+}
+

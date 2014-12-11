@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import solmovdrareeg.htf_soldra.activities.FavoritesFragment;
 import solmovdrareeg.htf_soldra.activities.FavoritesFragment_;
+import solmovdrareeg.htf_soldra.activities.LegendaFragment;
+import solmovdrareeg.htf_soldra.activities.LegendaFragment_;
 import solmovdrareeg.htf_soldra.activities.OverviewFragment_;
 import solmovdrareeg.htf_soldra.activities.TipFragment;
 import solmovdrareeg.htf_soldra.activities.TipFragment_;
@@ -25,8 +27,10 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new OverviewFragment_();
             case 1:
-                return new TipFragment_();
+                return new LegendaFragment_();
             case 2:
+                return new TipFragment_();
+            case 3:
                 return new FavoritesFragment_();
         }
 
@@ -35,6 +39,6 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 }
