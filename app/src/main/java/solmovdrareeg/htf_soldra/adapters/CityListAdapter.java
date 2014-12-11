@@ -36,9 +36,18 @@ public class CityListAdapter extends BaseAdapter {
     }
 
     public void add(City city) {
-        if(!cities.contains(city)){
+        if(!containsCity(city)){
             cities.add(city);
         }
+    }
+
+    private boolean containsCity(City city) {
+        for(City c : cities){
+            if(city.getId() - c.getId() == 0){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
