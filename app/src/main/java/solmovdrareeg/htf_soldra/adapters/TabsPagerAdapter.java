@@ -1,4 +1,4 @@
-package solmovdrareeg.htf_soldra.util;
+package solmovdrareeg.htf_soldra.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

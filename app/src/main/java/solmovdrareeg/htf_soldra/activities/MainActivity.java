@@ -1,7 +1,6 @@
 package solmovdrareeg.htf_soldra.activities;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -9,16 +8,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
 
 import solmovdrareeg.htf_soldra.R;
-import solmovdrareeg.htf_soldra.model.City;
 import solmovdrareeg.htf_soldra.util.RestClient;
-import solmovdrareeg.htf_soldra.util.TabsPagerAdapter;
+import solmovdrareeg.htf_soldra.adapters.TabsPagerAdapter;
 
 
 @EActivity
