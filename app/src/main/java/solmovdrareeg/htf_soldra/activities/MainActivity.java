@@ -6,7 +6,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
 
@@ -28,10 +30,17 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        for (City city : restClient.getAllCities()) {
-            System.out.println(city.getName());
-        }
-        ;
+        testApi();
+    }
+
+    @Background
+    public void testApi(){
+        showName(restClient.getAllCities().getItems()[0].getName());
+    }
+
+    @UiThread
+    public void showName(String name){
+        textView.setText(name);
     }
 
 

@@ -7,6 +7,7 @@ import org.androidannotations.annotations.rest.Rest;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 
 import solmovdrareeg.htf_soldra.model.City;
+import solmovdrareeg.htf_soldra.model.CityList;
 
 
 /**
@@ -16,6 +17,12 @@ import solmovdrareeg.htf_soldra.model.City;
 public interface RestClient {
 
     @Get("/citycollection")
-    City[] getAllCities();
+    CityList getAllCities();
+
+    @Get("/city/{id}")
+    City getById(long id);
+
+    @Get("/city?province={province}")
+    CityList getByProvince(String province);
 
 }

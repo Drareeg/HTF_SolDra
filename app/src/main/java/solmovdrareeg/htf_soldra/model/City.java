@@ -8,7 +8,7 @@ public class City {
     private long id;
     private String name;
     private int zipcode;
-    private String procince;
+    private String province;
     private String alertCode;
     private String kind;
 
@@ -36,12 +36,12 @@ public class City {
         this.zipcode = zipcode;
     }
 
-    public String getProcince() {
-        return procince;
+    public String getProvince() {
+        return province;
     }
 
-    public void setProcince(String procince) {
-        this.procince = procince;
+    public void setProvince(String province) {
+        this.province = province;
     }
 
     public String getAlertCode() {
