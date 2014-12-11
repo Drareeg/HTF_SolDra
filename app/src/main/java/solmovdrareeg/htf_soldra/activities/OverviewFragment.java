@@ -51,7 +51,18 @@ public class OverviewFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        showDefaultCities();
         return inflater.inflate(R.layout.overview_fragment, container, false);
+
+    }
+
+    @Background
+    public void showDefaultCities() {
+        long[] defaultIds = new long[]{5297547954356224l, 4790047639339008l, 5508312736989184l,4541270517088256l, 5624528914874368l };
+        for(long id : defaultIds){
+            adapter.add(proxy.getById(id));
+            notifyChanged();
+        }
     }
 
     @Background
