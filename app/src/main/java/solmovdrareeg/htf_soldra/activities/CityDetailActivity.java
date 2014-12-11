@@ -1,6 +1,7 @@
 package solmovdrareeg.htf_soldra.activities;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +22,6 @@ import java.util.Set;
 
 import solmovdrareeg.htf_soldra.R;
 import solmovdrareeg.htf_soldra.model.City;
-import solmovdrareeg.htf_soldra.util.MyPrefs_;
 
 @EActivity
 public class CityDetailActivity extends Activity {
@@ -35,8 +35,6 @@ public class CityDetailActivity extends Activity {
     @ViewById
     Button favoriteButton;
 
-    @Pref
-    MyPrefs_ prefs;
 
     private String unfav = "Unfavorite";
 
@@ -52,10 +50,17 @@ public class CityDetailActivity extends Activity {
 
     }
 
+
+
     @AfterViews
     public void doAfterViews(){
+        HashSet<String> empty = new HashSet<String>();
+        SharedPreferences prefs = getSharedPreferences(String.valueOf(R.string.preferences), MODE_PRIVATE);
+        Set<String> prefids = prefs.getStringSet("prefids", empty);
+
+
         gemeenteTextView.setText(city.getName());
-        if(prefs.favoritedCityIds().get() == null || !prefs.favoritedCityIds().get().contains(city.getId())){
+        if(!prefids.contains(city.getId())){
             favoriteButton.setText("Add to favorites");
         }else{
             favoriteButton.setText(unfav);
@@ -86,20 +91,23 @@ public class CityDetailActivity extends Activity {
 
     @Click(R.id.favoriteButton)
     public void doFavAction(){
-        Set<String>  originalSet = prefs.favoritedCityIds().get();
-        if(originalSet == null){
-            originalSet = new HashSet<String>();
-        }
+        HashSet<String> empty = new HashSet<String>();
+        SharedPreferences prefs = getSharedPreferences(String.valueOf(R.string.preferences), MODE_PRIVATE);
+        Set<String> prefids = prefs.getStringSet("prefids", empty);
+
+
         if(favoriteButton.getText().toString().equals(unfav)){
             //remove from pref
 
-            originalSet.remove(city.getId()+"");
+            prefids.remove(city.getId()+"");
 
         }else{
-            originalSet.add(city.getId()+"");
+            prefids.add(city.getId()+"");
             System.out.println("added to prefs");
         }
-        prefs.edit().favoritedCityIds().put(originalSet).apply();
+        SharedPreferences.Editor editor = getSharedPreferences(String.valueOf(R.string.preferences), MODE_PRIVATE).edit();
+        editor.putStringSet("prefids", prefids);
+        editor.commit();
     }
 
 

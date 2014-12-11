@@ -1,6 +1,8 @@
 package solmovdrareeg.htf_soldra.activities;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ItemClick;
@@ -16,11 +19,13 @@ import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import solmovdrareeg.htf_soldra.R;
 import solmovdrareeg.htf_soldra.adapters.CityListAdapter;
 import solmovdrareeg.htf_soldra.model.City;
 import solmovdrareeg.htf_soldra.model.CityList;
-import solmovdrareeg.htf_soldra.util.MyPrefs_;
 import solmovdrareeg.htf_soldra.util.RestProxy;
 
 /**
@@ -29,8 +34,6 @@ import solmovdrareeg.htf_soldra.util.RestProxy;
 @EFragment
 public class FavoritesFragment extends Fragment {
 
-    @Pref
-    MyPrefs_ prefs;
 
     @ViewById
     ListView listView;
@@ -39,24 +42,22 @@ public class FavoritesFragment extends Fragment {
     RestProxy proxy;
 
     @AfterViews
+            @Background
     void bindAdapter() {
 
         listView.setAdapter(adapter);
         //adapter.clear();
 
-        if (prefs.favoritedCityIds().get() == null) {
-            System.out.println("geen rpefs");
-            //TODO toon geen favs
-        } else {
-            System.out.println("wel prefs");
-            for (String id : prefs.favoritedCityIds().get()) {
-                adapter.add(proxy.getById(Long.parseLong(id)));
-                notifyChanged();
-            }
+
+        HashSet<String> empty = new HashSet<String>();
+        SharedPreferences prefs = getActivity().getSharedPreferences(String.valueOf(R.string.preferences), Activity.MODE_PRIVATE);
+        Set<String> prefids = prefs.getStringSet("prefids", empty);
+        for (String id : prefids) {
+            adapter.add(proxy.getById(Long.parseLong(id)));
+            notifyChanged();
         }
-
-
     }
+
 
     @Bean
     CityListAdapter adapter;
