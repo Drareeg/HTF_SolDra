@@ -12,7 +12,8 @@
         android:id="@+id/statusView"/>
 
     <TextView android:id="@+id/nameText"
-        android:layout_width="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1.5"
         android:textStyle="bold"
