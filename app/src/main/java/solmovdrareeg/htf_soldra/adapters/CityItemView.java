@@ -27,7 +27,7 @@ public class CityItemView extends LinearLayout{
     @ViewById
     TextView nameText;
 
-    private static Map<String, Integer> imageMap;
+    public static Map<String, Integer> imageMap;
     static{
         imageMap = new HashMap<String, Integer>();
         imageMap.put("GREEN", R.drawable.green);
