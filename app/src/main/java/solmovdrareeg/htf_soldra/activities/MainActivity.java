@@ -1,82 +1,88 @@
 package solmovdrareeg.htf_soldra.activities;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import org.androidannotations.annotations.Background;
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
-import org.androidannotations.annotations.sharedpreferences.Pref;
-
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
 
 import solmovdrareeg.htf_soldra.R;
 import solmovdrareeg.htf_soldra.model.City;
-import solmovdrareeg.htf_soldra.util.MyPrefs;
-import solmovdrareeg.htf_soldra.util.MyPrefs_;
 import solmovdrareeg.htf_soldra.util.RestClient;
+import solmovdrareeg.htf_soldra.util.TabsPagerAdapter;
 
 
 @EActivity
-public class MainActivity extends Activity {
-
-    @ViewById(R.id.textView)
-    public TextView textView;
-
+public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
     @RestService
     RestClient restClient;
 
-    @Pref
-    MyPrefs_ mypref;
+    private ActionBar actionBar;
+    private FragmentManager fm;
+    private TabsPagerAdapter adapter;
+
+    @ViewById(R.id.viewpager)
+    public ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         testApi();
 
-    }
+        //Menu bar stuff
+        actionBar = getActionBar();
+        actionBar.setTitle("Overzicht");
+        actionBar.setHomeButtonEnabled(false);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-    @Click(R.id.button)
-    public void addFavCity() {
-        Set<String> originalNames = mypref.favoritedCityNames().get();
-        if (originalNames == null) {
-            originalNames = new HashSet<String>();
-        }
-        Random r = new Random();
-        originalNames.add("tits" + r.nextInt(50));
-        mypref.edit().favoritedCityNames().put(originalNames).apply();
-        showPrefs();
-    }
+        fm = getSupportFragmentManager();
 
-    @Background
-    public void testApi() {
-        showName(restClient.getById(4503989127217152l).getName());
-    }
+        adapter = new TabsPagerAdapter(getSupportFragmentManager());
 
-    @UiThread
-    public void showName(String name) {
-        textView.setText(name);
-    }
-
-    public void showPrefs() {
-        String prefCities = "";
-        if (mypref.favoritedCityNames() != null) {
-            for (String c : mypref.favoritedCityNames().get()) {
-                prefCities += c;
+        viewPager.setAdapter(adapter);
+        viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener()
+        {
+            @Override
+            public void onPageSelected(int position)
+            {
+                actionBar.setSelectedNavigationItem(position);
             }
-        }
-        showName(prefCities);
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+            }
+        });
+        actionBar.addTab(
+                actionBar.newTab()
+                        .setText("Overzicht")
+                        .setTabListener(this));
+        actionBar.addTab(
+                actionBar.newTab()
+                        .setText("Tips")
+                        .setTabListener(this));
+
+        actionBar.addTab(
+                actionBar.newTab()
+                        .setText("Favoriete steden")
+                        .setTabListener(this));
+
+
     }
 
+    //Menu bar stuff
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -98,5 +104,33 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+        viewPager.setCurrentItem(tab.getPosition());
+        switch(tab.getPosition())
+        {
+            case 0 : actionBar.setTitle("Overzicht");
+                break;
+            case 1 : actionBar.setTitle("Tips");
+                break;
+            case 2 : actionBar.setTitle("Favoriete steden");
+                break;
+        }
+
+        /**
+          * on swiping the viewpager make respective tab selected
+          * */
+    }
+
+    @Override
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+
+    }
+
+    @Override
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+
     }
 }
