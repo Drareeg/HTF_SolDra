@@ -66,6 +66,8 @@ public class RestProxy {
         for(City city : allCities.getItems()){
             if(city.getName().toLowerCase().contains(gemeente.toLowerCase())){
                 foundCities.add(city);
+            }else if((city.getZipcode()+"").equals(gemeente)){
+                foundCities.add(city);
             }
         }
         CityList filteredCities = new CityList();

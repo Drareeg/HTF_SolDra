@@ -76,7 +76,6 @@ public class OverviewFragment extends Fragment {
         for (City city : byName.getItems()) {
             adapter.add(city);
         }
-        System.out.println("done searching" + adapter.getCount());
         notifyChanged();
 
     }
